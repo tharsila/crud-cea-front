@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import './styles.css'
 const Header = () => {
   return (
@@ -8,10 +9,10 @@ const Header = () => {
           <ul>
             <li>CEA - CRUD</li>
             <div className="navItem">
-              <li>Painel de Usuários</li>
-              <li>Painel de Produtos</li>
-              <li>Cadastrar Usuário</li>
-              <li>Cadastrar Produto</li>
+              <li> <NavLink to='/home'>Painel de Produtos</NavLink> </li>
+              <li> <NavLink to='/users'>Painel de Usuários</NavLink> </li>
+              <li> <NavLink to='/create-products'>Cadastrar Produto</NavLink> </li>
+              <li> <NavLink to='/create-users'>Cadastrar Usuários</NavLink> </li>
             </div>
           </ul>
         </nav>
