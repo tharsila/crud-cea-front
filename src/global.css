@@ -6,7 +6,14 @@
 
 body {
   font-family: sans-serif;
-  background: #333;
+  background: #ffffff;
+}
+
+main {
+  height: 100vh;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 a {
