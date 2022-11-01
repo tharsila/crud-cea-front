@@ -24,7 +24,7 @@ const CreateProducts = () => {
             <Input 
               type='text' 
               text='Nome' 
-              name='productName' 
+              name={name} 
               placeholder='Digite um nome...'
               value={name}
               handleOnChange={((e) => setName(e.target.value))}
@@ -32,7 +32,7 @@ const CreateProducts = () => {
             <Input 
               type='number' 
               text='Preço' 
-              name='Price' 
+              name={price} 
               placeholder='Digite um preço...'
               value={price}
               handleOnChange={((e) => setPrice(e.target.value))}
@@ -40,7 +40,7 @@ const CreateProducts = () => {
             <Input 
               type='text' 
               text='Imagem' 
-              name='image' 
+              name={image}
               placeholder='Envie uma imagem (url)...'
               value={image}
               handleOnChange={((e) => setImage(e.target.value))}
