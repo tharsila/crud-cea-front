@@ -1,5 +1,5 @@
 .bgHeader {
-  background: red;
+  background: #dbeafe;
 }
 
 .bgHeader header {
@@ -14,11 +14,21 @@
   align-items: center;
 }
 
+.bgHeader header nav ul a {
+  color: #1e3a8a;
+  transition: 0.4s;
+}
+
+.bgHeader header nav ul a:hover {
+  filter: brightness(150%);
+}
+
 .bgHeader header nav ul li {
   padding: 15px 10px;
   cursor: pointer;
   font-weight: bold;
   font-size: 1.2rem;
+  transition: 0.4s;
 }
 
 .bgHeader header nav ul .navItem {

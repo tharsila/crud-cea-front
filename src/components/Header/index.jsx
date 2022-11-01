@@ -7,9 +7,9 @@ const Header = () => {
       <header>
         <nav>
           <ul>
-            <li>CEA - CRUD</li>
+            <li> <NavLink to='/'>CEA - CRUD</NavLink></li>
             <div className="navItem">
-              <li> <NavLink to='/home'>Painel de Produtos</NavLink> </li>
+              <li> <NavLink to='/'>Painel de Produtos</NavLink> </li>
               <li> <NavLink to='/users'>Painel de Usuários</NavLink> </li>
               <li> <NavLink to='/create-products'>Cadastrar Produto</NavLink> </li>
               <li> <NavLink to='/create-users'>Cadastrar Usuários</NavLink> </li>
