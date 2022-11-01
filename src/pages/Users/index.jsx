@@ -1,17 +1,62 @@
 import React from 'react'
 import Title from '../../components/Title'
+import Modal from '../../components/Modal'
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa'
 import { useIndex } from '../../hooks/pages/Users/useIndex'
 import '../Home/styles.css'
+import Button from '../../components/Button'
+import Input from '../../components/Input'
 
 const Users = () => {
-  const{ users, showUser, deleteUser } = useIndex()
+  const{
+    userId,
+    name,
+    email,
+    password,
+    setName,
+    setEmail,
+    setPassword,
+    editUser,
+    users, 
+    showUser, 
+    deleteUser 
+  } = useIndex()
 
   return (
     <>
+      <Modal>
+      <form >
+          <Input 
+            type='text' 
+            text='Nome' 
+            name='username' 
+            placeholder='Digite um nome...'
+            value={name}
+            handleOnChange={((e) => setName(e.target.value))}
+          />
+          <Input 
+            type='email' 
+            text='Email' 
+            name='email' 
+            placeholder='Digite um email...'
+            value={email}
+            handleOnChange={((e) => setEmail(e.target.value))}
+          />
+          <Input
+            type='password' 
+            text='Senha' 
+            name='password' 
+            placeholder='Digite uma senha...'
+            value={password}
+            handleOnChange={((e) => setPassword(e.target.value))}
+          />
+          <Button text='Cadastrar' handleOnClick={() => editUser(userId)} />
+        </form>
+      </Modal>
       <Title text='Painel de Usuários' />
       <div className="tableContainer">
-        <table>
+        {users?.length ? (
+          <table>
           <thead>
             <tr>
               <th>#</th>
@@ -34,6 +79,8 @@ const Users = () => {
             ))}
           </tbody>
         </table>
+        ) : 'Não há usuários cadastrados.'}
+        
       </div>
     </>
   )
