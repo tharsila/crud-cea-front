@@ -1,0 +1,44 @@
+.tableContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tableContainer table {
+  max-width: 850px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableContainer table thead {
+  text-align: left;
+  background: #1d4ed8;
+  color: #f0f9ff;
+}
+
+.tableContainer table thead tr th,
+.tableContainer table tbody tr td {
+  padding: 10px;
+}
+
+.tableContainer table tbody tr {
+  border-bottom: 1px solid #dbeafe;
+}
+
+.tableContainer table tbody tr:nth-child(even) {
+  background: #f0f9ff;
+}
+
+.tableContainer table tbody tr .tableAction {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.tableContainer table tbody tr .tableAction span {
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.tableContainer table tbody tr .tableAction span:hover {
+  color: #1e3a8a;
+}
