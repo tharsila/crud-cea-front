@@ -8,7 +8,7 @@ import Button from '../../components/Button'
 const CreateUsers = () => {
   return (
     <>
-      <Title text='Criar Usuários'/>
+      <Title text='Cadastrar Usuários'/>
       <main>
         <div className="formContainer">
           <form >
@@ -30,7 +30,7 @@ const CreateUsers = () => {
               name='password' 
               placeholder='Digite uma senha...'
             />
-            <Button text='Criar' />
+            <Button text='Cadastrar' />
           </form>
 
         </div>
