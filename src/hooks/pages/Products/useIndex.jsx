@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import { ApiService } from '../../../services/ApiService'
 
 export const useIndex = () => {
+  const [productId, setProductId] = useState(null)
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [image, setImage] = useState('')
   const [products, setProducts] = useState([])
-  const [productSelected, setProductSelected] = useState(false)
 
   useEffect(() => {
     ApiService.get('/products')
@@ -33,17 +33,26 @@ export const useIndex = () => {
     })
   }
 
-  const showProduct = (product) => {
-    console.log(product)
-    product.name
-    product.price
-    product.image
-    setProductSelected(true)
+  const hideOrShowModal = (display) => {
+    const modal = document.getElementById('modal')
+    if (display) {
+      modal.classList.remove('hide')
+    } else {
+      modal.classList.add('hide')
+    }
   }
 
-  const editProduct = (id) => {
-    const updatedProduct = {id, name, price, image}
-    ApiService.put('/products/' + id, {
+  const showProduct = (product) => {
+    setProductId(product.id)
+    setName(product.name)
+    setPrice(product.price)
+    setImage(product.image)
+    hideOrShowModal(true)
+  }
+
+  const editProduct = (productId) => {
+    const updatedProduct = {id: productId, name, price, image}
+    ApiService.put('/products/' + productId, {
       name,
       price,
       image
@@ -51,10 +60,13 @@ export const useIndex = () => {
     .then(() => {
       console.log('atualizado com sucesso')
       setProducts(oldProducts => oldProducts.map((p) => p.id === updatedProduct.id ? (p = updatedProduct) : p))
+      hideOrShowModal(false)
     })
     .catch((error) => {
       console.error(error)
     })
+
+    console.log(updatedProduct)
   }
 
   const deleteProduct = (product) => {
@@ -69,12 +81,12 @@ export const useIndex = () => {
     })
   }
 
-  return { 
+  return {
+    productId,
     name,
     price, 
     image,
     products,
-    productSelected,
     registerProduct,
     setName,
     setPrice,
