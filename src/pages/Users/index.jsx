@@ -1,9 +1,14 @@
 import React from 'react'
 import Title from '../../components/Title'
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa'
+import { useIndex } from '../../hooks/pages/Users/useIndex'
 import '../Home/styles.css'
 
 const Users = () => {
+  const{ 
+    users
+  } = useIndex()
+
   return (
     <>
       <Title text='Painel de Usuários' />
@@ -18,42 +23,17 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Teste</td>
-              <td>teste@email.com</td>
-              <td className='tableAction'>
-                <span><FaPencilAlt /></span>
-                <span><FaTrashAlt /></span>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Teste</td>
-              <td>teste@email.com</td>
-              <td className='tableAction'>
-                <span><FaPencilAlt /></span>
-                <span><FaTrashAlt /></span>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Teste</td>
-              <td>teste@email.com</td>
-              <td className='tableAction'>
-                <span><FaPencilAlt /></span>
-                <span><FaTrashAlt /></span>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Teste</td>
-              <td>teste@email.com</td>
-              <td className='tableAction'>
-                <span><FaPencilAlt /></span>
-                <span><FaTrashAlt /></span>
-              </td>
-            </tr>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td className='tableAction'>
+                  <span><FaPencilAlt /></span>
+                  <span><FaTrashAlt /></span>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
