@@ -4,7 +4,7 @@ import './styles.css'
 const Button = ({text, handleOnClick}) => {
   return (
     <div className="btnAction">
-      <button onClick={handleOnClick}>{text}</button>
+      <a onClick={handleOnClick}>{text}</a>
     </div>
   )
 }
