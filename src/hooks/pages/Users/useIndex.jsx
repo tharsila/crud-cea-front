@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { ApiService } from '../../../services/ApiService'
 
 export const useIndex = () => {
+  const [userId, setUserId] = useState(null)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -34,22 +35,34 @@ export const useIndex = () => {
     })
   }
 
-  const showUser = (user) => {
-    console.log(user)
-    user.name
-    user.email
-    user.password
-    setSelectedUser(true)
+  const hideOrShowModal = (display) => {
+    const modal = document.getElementById('modal')
+
+    if (display) {
+      modal.classList.remove('hide')
+    }else {
+      modal.classList.add('hide')
+    }
   }
 
-  const editUser = (id) => {
-    const updatedUser = {id, name, email, password}
-    ApiService.put('/users/' + id, {
+  const showUser = (user) => {
+    console.log(user)
+    setUserId(user.id)
+    setName(user.name)
+    setEmail(user.email)
+    setPassword(user.password)
+    hideOrShowModal(true)
+  }
+
+  const editUser = (userId) => {
+    const updatedUser = {id: userId, name, email, password}
+    ApiService.put('/users/' + userId, {
       name, email, password
     })
     .then(() => {
       console.log('atualizado com sucesso')
       setUsers(oldUsers => oldUsers.map((u) => u.id === updatedUser.id ? (u = updatedUser) : u))
+      hideOrShowModal(false)
     })
     .catch((error) => {
       console.error(error)
@@ -74,6 +87,7 @@ export const useIndex = () => {
     password,
     users,
     registerUser,
+    userId,
     setName,
     setEmail,
     setPassword,
