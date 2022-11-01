@@ -1,4 +1,10 @@
-main {
-  background: blue;
-  height: 100vh;
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainer form {
+  max-width: 550px;
+  width: 100%;
 }
