@@ -1,9 +1,11 @@
 import React from 'react'
 import Title from '../../components/Title'
 import { FaTrashAlt, FaPencilAlt } from 'react-icons/fa'
+import { useIndex } from '../../hooks/pages/Products/useIndex'
 import './styles.css'
 
 const Home = () => {
+  const { products, showProduct, deleteProduct } = useIndex()
   return (
     <>
       <Title text='Painel de Produtos' />
@@ -19,46 +21,18 @@ const Home = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Celular 2022</td>
-              <td>R$ 5000</td>
-              <td>https://imagem.com</td>
-              <td className='tableAction'>
-                <span><FaPencilAlt /></span>
-                <span><FaTrashAlt /></span>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Celular 2022</td>
-              <td>R$ 5000</td>
-              <td>https://imagem.com</td>
-              <td className='tableAction'>
-                <span><FaPencilAlt /></span>
-                <span><FaTrashAlt /></span>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Celular 2022</td>
-              <td>R$ 5000</td>
-              <td>https://imagem.com</td>
-              <td className='tableAction'>
-                <span><FaPencilAlt /></span>
-                <span><FaTrashAlt /></span>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Celular 2022</td>
-              <td>R$ 5000</td>
-              <td>https://imagem.com</td>
-              <td className='tableAction'>
-                <span><FaPencilAlt /></span>
-                <span><FaTrashAlt /></span>
-              </td>
-            </tr>
+            {products.map((product) => (
+              <tr key={product.id}>
+                <td>{product.id}</td>
+                <td>{product.name}</td>
+                <td>{product.price}</td>
+                <td>{product.image}</td>
+                <td className='tableAction'>
+                  <span><FaPencilAlt onClick={() => showProduct(product)}/></span>
+                  <span><FaTrashAlt onClick={() => deleteProduct(product)}/></span>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

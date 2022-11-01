@@ -5,9 +5,7 @@ import { useIndex } from '../../hooks/pages/Users/useIndex'
 import '../Home/styles.css'
 
 const Users = () => {
-  const{ 
-    users
-  } = useIndex()
+  const{ users, showUser, deleteUser } = useIndex()
 
   return (
     <>
@@ -29,8 +27,8 @@ const Users = () => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td className='tableAction'>
-                  <span><FaPencilAlt /></span>
-                  <span><FaTrashAlt /></span>
+                  <span><FaPencilAlt onClick={() => showUser(user)} /></span>
+                  <span><FaTrashAlt onClick={() => deleteUser(user)}/></span>
                 </td>
               </tr>
             ))}
