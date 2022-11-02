@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { ToastContainer } from 'react-toastify';
 import AppRoutes from './routes'
 import Header from './components/Header'
 import { AuthContext } from './contexts/AuthContext'
@@ -8,8 +9,8 @@ function App() {
   return (
     <>
     {authenticated ? <Header /> : null}
-      
       <AppRoutes />
+      <ToastContainer />
     </>
   )
 }

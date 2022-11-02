@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import{ toast } from 'react-toastify';
 import { ApiService } from '../../../services/ApiService'
 
 export const useIndex = () => {
@@ -18,19 +19,25 @@ export const useIndex = () => {
   const registerProduct = (e) => {
     e.preventDefault()
     const product = {
-      id: Math.random(),
       name,
       price,
       image
     }
     ApiService.post('/products', product)
     .then(() => {
-      console.log('cadastrado com sucesso')
+      toast.success('Produto cadastrado com sucesso!')
+      cleanForm()
       setProducts(prevProducts => [...prevProducts, product])
     })
     .catch((error) => {
-      console.error(error)
+      toast.error(error.response?.data.message)
     })
+  }
+
+  const cleanForm = () => {
+    setName('')
+    setPrice('')
+    setImage('')
   }
 
   const hideOrShowModal = (display) => {
@@ -58,26 +65,25 @@ export const useIndex = () => {
       image
     })
     .then(() => {
-      console.log('atualizado com sucesso')
+      toast.success('Produto atualizado com sucesso!')
       setProducts(oldProducts => oldProducts.map((p) => p.id === updatedProduct.id ? (p = updatedProduct) : p))
       hideOrShowModal(false)
     })
     .catch((error) => {
-      console.error(error)
+      toast.error(error.response?.data.message)
     })
 
     console.log(updatedProduct)
   }
 
   const deleteProduct = (product) => {
-    console.log(product)
     ApiService.delete('/products/' + product.id)
     .then(() => {
+      toast.success('Produto removido com sucesso!')
       setProducts((prevProducts) => prevProducts.filter((p) => p.id !== product.id))
-      console.log("deletou")
     })
     .catch((error) => {
-      console.error(error)
+      toast.error(error.response?.data.message)
     })
   }
 

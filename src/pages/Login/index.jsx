@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import 'react-toastify/dist/ReactToastify.css';
 import Button from '../../components/Button'
 import Input from '../../components/Input'
 import Title from '../../components/Title'

@@ -1,4 +1,5 @@
 import{ createContext, useEffect, useState } from "react";
+import{ toast } from 'react-toastify';
 import{ useNavigate } from 'react-router-dom';
 import{ ApiService } from '../services/ApiService';
 
@@ -26,7 +27,6 @@ export const AuthContextProvider = ({children}) => {
       const userLogged = response.data.user;
       const token = response.data.token;
       ApiService.defaults.headers.Authorization = `Bearer ${token}`;
-      
       if (userLogged && token !== undefined) {
         localStorage.setItem('user', JSON.stringify(userLogged));
         localStorage.setItem('token', JSON.stringify(token));
@@ -35,7 +35,7 @@ export const AuthContextProvider = ({children}) => {
       }
     })
     .catch((error) => {
-      console.log(error.response?.data.message)
+      toast.error(error.response?.data.message)
     })
   }
 

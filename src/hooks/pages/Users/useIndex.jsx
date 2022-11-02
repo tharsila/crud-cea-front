@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import{ toast } from 'react-toastify';
 import { ApiService } from '../../../services/ApiService'
 
 export const useIndex = () => {
@@ -7,7 +8,6 @@ export const useIndex = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [users, setUsers] = useState([])
-  const [selectedUser, setSelectedUser] = useState(false)
 
   useEffect(() => {
     ApiService.get('/users')
@@ -26,12 +26,19 @@ export const useIndex = () => {
 
     ApiService.post('/users', user)
     .then(() => {
-      console.log('cadastrado com sucesso')
+     toast.success('Usuário cadastrado com sucesso!')
       setUsers(prevUsers => [...prevUsers, user])
+      cleanForm()
     })
     .catch((error) => {
-      console.error(error)
+      toast.error(error.response?.data.message)
     })
+  }
+
+  const cleanForm = () => {
+    setName('')
+    setEmail('')
+    setPassword('')
   }
 
   const hideOrShowModal = (display) => {
@@ -59,12 +66,12 @@ export const useIndex = () => {
       name, email, password
     })
     .then(() => {
-      console.log('atualizado com sucesso')
+      toast.success('Usuário atualizado com sucesso!')
       setUsers(oldUsers => oldUsers.map((u) => u.id === updatedUser.id ? (u = updatedUser) : u))
       hideOrShowModal(false)
     })
     .catch((error) => {
-      console.error(error)
+      toast.error(error.response?.data.message)
     })
   }
 
@@ -73,10 +80,10 @@ export const useIndex = () => {
     ApiService.delete('/users/' + user.id)
     .then(() => {
       setUsers((prevUsers) => prevUsers.filter((u) => u.id !== user.id))
-      console.log("deletou")
+      toast.success('Usuário removido com sucesso!')
     })
     .catch((error) => {
-      console.error(error)
+      toast.error(error.response?.data.message)
     })
   }
 
