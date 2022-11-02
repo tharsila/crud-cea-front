@@ -19,7 +19,6 @@ export const useIndex = () => {
   const registerUser = (e) => {
     e.preventDefault()
     const user = {
-      id: Math.random(),
       name,
       email,
       password
