@@ -31,12 +31,19 @@
 
 .tableContainer table tbody tr .tableAction {
   display: flex;
+  align-items: center;
   gap: 1.5rem;
 }
 
 .tableContainer table tbody tr .tableAction span {
   cursor: pointer;
   transition: 0.4s;
+}
+
+.tableContainer table tbody tr .tableAction span svg {
+  cursor: pointer;
+  transition: 0.4s;
+  height: 100px;
 }
 
 .tableContainer table tbody tr .tableAction span:hover {

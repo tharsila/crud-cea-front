@@ -24,6 +24,10 @@ ul {
   list-style: none;
 }
 
+img {
+  width: 130px;
+}
+
 .hide {
   display: none;
 }

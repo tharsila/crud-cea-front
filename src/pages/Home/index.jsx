@@ -71,7 +71,7 @@ const Home = () => {
                 <td>{product.id}</td>
                 <td>{product.name}</td>
                 <td>{product.price}</td>
-                <td>{product.image}</td>
+                <td><img src={product.image} alt="imagem do produto"/></td>
                 <td className='tableAction'>
                   <span><FaPencilAlt onClick={() => showProduct(product)}/></span>
                   <span><FaTrashAlt onClick={() => deleteProduct(product)}/></span>
