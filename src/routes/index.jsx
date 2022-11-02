@@ -4,7 +4,6 @@ import Home from '../pages/Home'
 import CreateUsers from '../pages/CreateUsers'
 import CreateProducts from '../pages/CreateProducts'
 import Users from '../pages/Users'
-import Header from '../components/Header'
 import Login from '../pages/Login'
 import { AuthContext } from '../contexts/AuthContext'
 
